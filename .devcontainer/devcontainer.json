@@ -1,8 +1,13 @@
 {
     "name": "Codespaces Rust Starter",
-    "extensions": [],
-    "dockerfile":"Dockerfile"
-    "settings": {
-        "editor.formatOnSave": true
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "editor.formatOnSave": true
+            },
+            "extensions": [
+                "ms-azuretools.vscode-docker"
+            ]
+        }
     }
 }

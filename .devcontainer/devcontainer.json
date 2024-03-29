@@ -1,2 +1,8 @@
 {
+    "name": "Codespaces Rust Starter",
+    "extensions": [],
+    "dockerfile":"Dockerfile"
+    "settings": {
+        "editor.formatOnSave": true
+    }
 }

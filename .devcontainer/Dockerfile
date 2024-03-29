@@ -1,9 +1,26 @@
-FROM ubuntu:22.04
+FROM ubuntu:20.04
 
-WORKDIR /home/
+ARG USERNAME=vscode
+ARG USER_UID=1000
+ARG USER_GID=$USER_UID
 
-COPY . .
+ENV DEBIAN_FRONTEND=noninteractive
 
-RUN bash ./setup.sh
+RUN apt-get -y update --no-install-recommends \
+    && apt-get -y install --no-install-recommends \
+    build-essential \
+    curl \
+    ca-certificates \
+    apt-utils \
+    dialog \
+    git \
+    vim \
+    && apt-get autoremove -y \
+    && apt-get clean -y
 
-ENV PATH="/root/.cargo/bin:$PATH"
+RUN groupadd --gid $USER_GID $USERNAME \
+    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
+
+ENV DEBIAN_FRONTEND=dialog
+
+USER $USERNAME
